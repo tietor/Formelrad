@@ -10,7 +10,7 @@ public class Calculator {
 	private double spannung;
 	private double strom;
 	private double widerstand;
-	
+
 	public Calculator(double leistung, double spannung, double strom, double widerstand) {
 		super();
 		this.leistung = leistung;
@@ -18,11 +18,11 @@ public class Calculator {
 		this.strom = strom;
 		this.widerstand = widerstand;
 	}
-	
+
 	public double getLeistung() {
 		return leistung;
 	}
-	
+
 	public double getSpannung() {
 		return spannung;
 	}
@@ -37,9 +37,9 @@ public class Calculator {
 
 	@Override
 	public String toString() {
-		return "Calculator [leistung=" + leistung + 
-				", spannung=" + spannung + 
-				", strom=" + strom + 
+		return "Calculator [leistung=" + leistung +
+				", spannung=" + spannung +
+				", strom=" + strom +
 				", widerstand="	+ widerstand + "]";
 	}
 
@@ -48,8 +48,10 @@ public class Calculator {
 		 * welche Methode unten aufgerufen werden muss.
 		 */
 	}
-	
-	/* Hier die Methoden mit den Formlen hinzufügen
+
+	/* Hier die Methoden mit den Formlen hinzufï¿½gen
 	 */
-	
+    public double pFromUandI(double u, double i) {
+        return u*i;
+    }
 }
