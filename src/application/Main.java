@@ -3,6 +3,7 @@ package application;
 import java.io.FileInputStream;
 
 import javafx.application.Application;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -59,6 +60,11 @@ public class Main extends Application {
 			lblStrom.setFont(Font.font(15));
 			root.getChildren().add(lblStrom);
 
+			Alert alert = new Alert(Alert.AlertType.WARNING);
+			alert.setTitle("Warnung");
+			alert.setHeaderText("Mehr als 2 Werte vorhanden");
+			alert.setContentText("Sie haben mehr als 2 Werte eingegeben. Bitte nur 2 Werte eingeben!");
+
 			TextField txStrom = new TextField();
 			txStrom.relocate(100, 365);
 			txStrom.setFont(Font.font("Verdana", 15));
@@ -80,34 +86,44 @@ public class Main extends Application {
 			root.getChildren().add(btnBerechnen);
 
 			btnBerechnen.setOnAction(e -> {
+				int counter = 0;
 				double power = 0.0;
 				double tension = 0.0;
 				double current = 0.0;
 				double resistence = 0.0;
 				if(txLeistung.getText().isEmpty()==false) {
 					power = Double.parseDouble(txLeistung.getText());
+					counter++;
 				}
 				if(txSpannung.getText().isEmpty()==false) {
 					tension = Double.parseDouble(txSpannung.getText());
+					counter++;
 				}
 				if(txStrom.getText().isEmpty()==false) {
 					current = Double.parseDouble(txStrom.getText());
+					counter++;
 				}
 				if(txWiderstand.getText().isEmpty()==false) {
 					resistence = Double.parseDouble(txWiderstand.getText());
+					counter++;
 				}
-				Calculator myCalculator = new Calculator(
-						power, tension, current, resistence);
-				System.out.print("Vorher:  ");
-				System.out.println(myCalculator.toString());
-				myCalculator.calculate();
-				System.out.print("Nachher: ");
-				System.out.println(myCalculator.toString());
 
-				txLeistung.setText(Double.toString(myCalculator.getLeistung()));
-				txSpannung.setText(Double.toString(myCalculator.getSpannung()));
-				txStrom.setText(Double.toString(myCalculator.getStrom()));
-				txWiderstand.setText(Double.toString(myCalculator.getWiderstand()));
+				if (counter > 2) {
+					alert.showAndWait();
+				} else {
+					Calculator myCalculator = new Calculator(
+							power, tension, current, resistence);
+					System.out.print("Vorher:  ");
+					System.out.println(myCalculator.toString());
+					myCalculator.calculate();
+					System.out.print("Nachher: ");
+					System.out.println(myCalculator.toString());
+
+					txLeistung.setText(Double.toString(myCalculator.getLeistung()));
+					txSpannung.setText(Double.toString(myCalculator.getSpannung()));
+					txStrom.setText(Double.toString(myCalculator.getStrom()));
+					txWiderstand.setText(Double.toString(myCalculator.getWiderstand()));
+				}
 			});
 
 			Scene scene = new Scene(root, 330, 490);
