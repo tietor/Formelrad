@@ -91,26 +91,43 @@ public class Main extends Application {
 				double tension = 0.0;
 				double current = 0.0;
 				double resistence = 0.0;
+				boolean leistungSet = true;
+				boolean spannungSet = true;
+				boolean stromSet = true;
+				boolean widerstandSet = true;
 				if(txLeistung.getText().isEmpty()==false) {
 					power = Double.parseDouble(txLeistung.getText());
 					counter++;
-				}
+				} else  {
+				  leistungSet = false;
+        }
+
 				if(txSpannung.getText().isEmpty()==false) {
 					tension = Double.parseDouble(txSpannung.getText());
 					counter++;
-				}
+				} else {
+				  spannungSet = false;
+        }
 				if(txStrom.getText().isEmpty()==false) {
 					current = Double.parseDouble(txStrom.getText());
 					counter++;
-				}
+				} else {
+				  spannungSet = false;
+        }
 				if(txWiderstand.getText().isEmpty()==false) {
 					resistence = Double.parseDouble(txWiderstand.getText());
 					counter++;
-				}
+				} else {
+				  widerstandSet = false;
+        }
 
 				if (counter > 2) {
 					alert.showAndWait();
 				} else {
+          txLeistung.setStyle("-fx-text-fill: black;");
+          txSpannung.setStyle("-fx-text-fill: black;");
+          txStrom.setStyle("-fx-text-fill: black;");
+          txWiderstand.setStyle("-fx-text-fill: black;");
 					Calculator myCalculator = new Calculator(
 							power, tension, current, resistence);
 					System.out.print("Vorher:  ");
@@ -119,10 +136,24 @@ public class Main extends Application {
 					System.out.print("Nachher: ");
 					System.out.println(myCalculator.toString());
 
-					txLeistung.setText(Double.toString(myCalculator.getLeistung()));
-					txSpannung.setText(Double.toString(myCalculator.getSpannung()));
-					txStrom.setText(Double.toString(myCalculator.getStrom()));
-					txWiderstand.setText(Double.toString(myCalculator.getWiderstand()));
+					if (!leistungSet) {
+            txLeistung.setText(Double.toString(myCalculator.getLeistung()));
+            txLeistung.setStyle("-fx-text-fill: red;");
+          }
+					if (!spannungSet) {
+            txSpannung.setText(Double.toString(myCalculator.getSpannung()));
+            txSpannung.setStyle("-fx-text-fill: red;");
+          }
+
+					if (!stromSet) {
+            txStrom.setText(Double.toString(myCalculator.getStrom()));
+            txStrom.setStyle("-fx-text-fill: red;");
+          }
+
+					if (!widerstandSet) {
+            txWiderstand.setText(Double.toString(myCalculator.getWiderstand()));
+            txWiderstand.setStyle("-fx-text-fill: red;");
+          }
 				}
 			});
 
