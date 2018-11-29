@@ -68,26 +68,32 @@ public class Calculator {
   /* Hier die Methoden mit den Formlen hinzuf�gen
    */
   public double pFromUandI(double u, double i) {
+    System.out.println("Berechne P mit U=" + u + " und I= " + i + ". Ergebnis  von P=" + u * i);
     return u * i;
   }
 
   public double pFromIandR(double i, double r) {
+    System.out.println("Berechne P mit I=" + i + " und R=" + r + ". Ergebnis von P=" + r * i * i);
     return r * i * i;
   }
 
   public double pFromUandR(double u, double r) {
+    System.out.println("Berechne P mit U=" + u + " und R=" + r + ". Ergebnis von P=" + u * u / r);
     return u * u / r;
   }
 
   public double iFromPandR(double p, double r) {
+    System.out.println("Berechne I mit P=" + p + " und R=" + r + ". Ergebnis von I=" + Math.sqrt(p / r));
     return Math.sqrt(p / r);
   }
 
   public double iFromPandU(double p, double u) {
+    System.out.println("Berechne I mit P=" + p + " und U=" + u + ". Ergebnis von I=" + p / u);
     return p / u;
   }
 
   public double iFromUandR(double u, double r) {
+    System.out.println("Berechne I mit U=" + u + " und R=" + r + ". Ergebnis von I=" + u / r);
     return u / r;
   }
 }
