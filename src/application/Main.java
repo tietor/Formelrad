@@ -95,6 +95,10 @@ public class Main extends Application {
 				boolean spannungSet = true;
 				boolean stromSet = true;
 				boolean widerstandSet = true;
+				txLeistung.setStyle("-fx-text-fill: black;");
+				txSpannung.setStyle("-fx-text-fill: black;");
+				txStrom.setStyle("-fx-text-fill: black;");
+				txWiderstand.setStyle("-fx-text-fill: black;");
 				if(txLeistung.getText().isEmpty()==false) {
 					power = Double.parseDouble(txLeistung.getText());
 					counter++;
@@ -112,7 +116,7 @@ public class Main extends Application {
 					current = Double.parseDouble(txStrom.getText());
 					counter++;
 				} else {
-				  spannungSet = false;
+				  stromSet = false;
         }
 				if(txWiderstand.getText().isEmpty()==false) {
 					resistence = Double.parseDouble(txWiderstand.getText());
