@@ -18,7 +18,7 @@ import javafx.scene.text.Font;
  * Formelrad Application
  * @author Peter Rutschmann
  * @version 29.11.2018
- 
+ */
 public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
@@ -84,6 +84,22 @@ public class Main extends Application {
 			btnBerechnen.relocate(100, 445);
 			btnBerechnen.setText("Berechnen");
 			root.getChildren().add(btnBerechnen);
+
+			Button clearButton = new Button();
+			clearButton.relocate(180, 445);
+			clearButton.setText("Clear");
+			root.getChildren().add(clearButton);
+
+			clearButton.setOnAction(event -> {
+				txLeistung.clear();
+				txSpannung.clear();
+				txStrom.clear();
+				txWiderstand.clear();
+				txLeistung.setStyle("-fx-text-fill: black;");
+				txSpannung.setStyle("-fx-text-fill: black;");
+				txStrom.setStyle("-fx-text-fill: black;");
+				txWiderstand.setStyle("-fx-text-fill: black;");
+			});
 
 			btnBerechnen.setOnAction(e -> {
 				int counter = 0;
